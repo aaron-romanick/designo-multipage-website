@@ -1,0 +1,53 @@
+en:
+  title: Web Design
+
+  hero.heading: Web Design
+  hero.content: We build websites that serve as powerful marketing tools and bring memorable brand experiences.
+
+  project.expess.ariaLabel: Express is a multi-carrier shipping website for ecommerce businesses.
+  project.expess.title: Express
+  project.expess.content: A multi-carrier shipping website for ecommerce businesses
+
+  project.transfer.ariaLabel: Transfer is a site for low-cost money transfers and sending money within seconds.
+  project.transfer.title: Transfer
+  project.transfer.content: Site for low-cost money transfers and sending money within seconds
+
+  project.photon.ariaLabel: Photon is a state-of-the-art music player with high-resolution audio and DSP effects.
+  project.photon.title: Photon
+  project.photon.content: A state-of-the-art music player with high-resolution audio and DSP effects
+
+  project.builder.ariaLabel: Builder connects users with local contractors based on their location.
+  project.builder.title: Builder
+  project.builder.content: Connects users with local contractors based on their location
+
+  project.blogr.ariaLabel: Blogr is a platform for creating an online blog or publication.
+  project.blogr.title: Blogr
+  project.blogr.content: Blogr is a platform for creating an online blog or publication
+
+  project.camp.ariaLabel: Camp is a way to get expert training in coding, data, design, and digital marketing.
+  project.camp.title: Camp
+  project.camp.content: Get expert training in coding, data, design, and digital marketing
+    
+ja:
+  title: ウェブデザイン
+
+  hero.heading: ウェブデザイン
+  hero.content: 弊社は、強力なマーケティングツールとして機能し、記憶に残るブランド体験をもたらすウェブサイトを構築します。
+
+  project.expess.ariaLabel: Expressは、eコマース事業者向けのマルチキャリア配送ウェブサイトです。
+  project.expess.content: eコマース事業者向けのマルチキャリア配送ウェブサイト
+
+  project.transfer.ariaLabel: Transferは、低コストの送金と数秒以内の送金が可能なウェブサイトです。
+  project.transfer.content: 低コストの送金と数秒以内の送金が可能なウェブサイト
+
+  project.photon.ariaLabel: Photonは、ハイレゾリューション・オーディオとDSPエフェクトを備えた最先端の音楽プレーヤー
+  project.photon.content: ハイレゾリューション・オーディオとDSPエフェクトを備えた最先端の音楽プレーヤー
+
+  project.builder.ariaLabel: Builderは、ユーザーの所在地により、地元業者を紹介するウェブサイトです。
+  project.builder.content: ユーザーの所在地により、地元業者を紹介するウェブサイト
+
+  project.blogr.ariaLabel: Blogrは、オンラインブログや出版物を作成するためのプラットフォームです。
+  project.blogr.content: Blogrは、オンラインブログや出版物を作成するためのプラットフォーム
+
+  project.camp.ariaLabel: Campは、コーディング、データ、デザイン、デジタルマーケティングの専門トレーニングを受けるウェブサイトです。
+  project.camp.content: コーディング、データ、デザイン、デジタルマーケティングの専門トレーニングを受ける

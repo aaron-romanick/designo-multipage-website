@@ -1,0 +1,51 @@
+---
+import Quality from '../components/Quality.astro'
+import Hero from '../components/Hero.astro'
+import Service from '../components/Service.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import serviceDict from '../locales/service.yml'
+import qualityDict from '../locales/quality.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/home/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tService = useTranslations(lang, serviceDict)
+const tQuality = useTranslations(lang, qualityDict)
+---
+
+<Layout title={ `${tIndex('title.brand')} | ${tIndex('title.tagline')}` }>
+  <Hero type="home" link={ getLocaleUrl('/about', lang) }>
+    <Fragment slot="heading">{ tIndex('hero.title') }</Fragment>
+    <Fragment slot="content">{ tIndex('hero.content') }</Fragment>
+    <Fragment slot="button">{ tIndex('hero.button') }</Fragment>
+  </Hero>
+  <div class="service__list | container">
+    <Service type="web-design" link="web-design" ariaLabel={ tService('label.web-design') }>
+      <Fragment slot="title">{ tService('type.web-design') }</Fragment>
+    </Service>
+    <Service type="app-design" link="app-design" ariaLabel={ tService('label.app-design') }>
+      <Fragment slot="title">{ tService('type.app-design') }</Fragment>
+    </Service>
+    <Service type="graphic-design" link="graphic-design" ariaLabel={ tService('label.graphic-design') }>
+      <Fragment slot="title">{ tService('type.graphic-design') }</Fragment>
+    </Service>
+  </div>
+  <ul class="quality__list | container">
+    <Quality imagesGlob={ imagesGlob } imagePath="../assets/home/desktop/illustration-passionate.svg" imageAlt={ tQuality('passionate.image-alt') }>
+      <Fragment slot="heading">{ tQuality('passionate.title') }</Fragment>
+      <Fragment slot="content">{ tQuality('passionate.content') }</Fragment>
+    </Quality>
+    <Quality imagesGlob={ imagesGlob } imagePath="../assets/home/desktop/illustration-resourceful.svg" imageAlt={ tQuality('resourceful.image-alt') }>
+      <Fragment slot="heading">{ tQuality('resourceful.title') }</Fragment>
+      <Fragment slot="content">{ tQuality('resourceful.content') }</Fragment>
+    </Quality>
+    <Quality imagesGlob={ imagesGlob } imagePath="../assets/home/desktop/illustration-friendly.svg" imageAlt={ tQuality('friendly.image-alt') }>
+      <Fragment slot="heading">{ tQuality('friendly.title') }</Fragment>
+      <Fragment slot="content">{ tQuality('friendly.content') }</Fragment>
+    </Quality>
+  </ul>
+</Layout>

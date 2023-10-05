@@ -1,0 +1,62 @@
+--- 
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SkipLink from '../components/SkipLink.astro'
+import Language from '../components/Language.astro'
+import { getLocale } from 'astro-i18n-aut'
+import '../style.scss'
+
+interface Props {
+  hasFooterOverlap?: 'true'|'false'
+  hasMaps?: 'true'|'false'
+	title: string
+}
+
+const { hasFooterOverlap, title } = Astro.props
+const lang = getLocale(Astro.url)
+---
+
+<!DOCTYPE html>
+<html lang={ lang }>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{ title }</title>
+    <meta name="description" content="Aaron Romanick is a front-end and back-end developer and designer, who builds appealing, accessible applications for the web." />
+    <meta name="image" content="https://www.aaronromanick.com/og.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Aaron Romanick" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aaron Romanick" />
+    <meta property="og:description" content="Aaron Romanick is a front-end and back-end developer and designer, who builds appealing, accessible applications for the web." />
+    <meta property="og:url" content="https://www.aaronromanick.com/" />
+    <meta property="og:image" content="https://www.aaronromanick/og.png" />
+    <meta property="twitter:title" content="Aaron Romanick" />
+    <meta property="twitter:description" content="Aaron Romanick is a front-end and back-end developer and designer, who builds appealing, accessible applications for the web." />
+    <meta property="twitter:url" content="https://www.aaronromanick.com/" />
+    <meta property="twitter:image" content="https://www.aaronromanick.com/og.png" />
+    <link rel="icon" type="image/png" sizes="512x192" href="https://www.aaronromanick.com/favicon/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="https://www.aaronromanick.com/favicon/android-chrome-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.aaronromanick.com/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.aaronromanick.com/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.aaronromanick.com/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="https://www.aaronromanick.com/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#223344" />
+    <meta name="theme-color" content="#223344" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {
+      Astro.url.pathname.indexOf('/locations') >= 0 &&
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin />
+    }
+  </head>
+  <body>
+    <SkipLink />
+    <Language />
+    <Header />
+    <main id="content" class="main | flow">
+      <slot />
+    </main>
+    <Footer hasFooterOverlap={ hasFooterOverlap ?? 'false' } />
+  </body>
+</html>

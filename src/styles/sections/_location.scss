@@ -1,0 +1,136 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+
+.location {
+
+  &__list {
+    --flow-space: 0;
+
+    @include media-queries.size(mobile-only) {
+      max-width: 100%;
+    }
+  }
+
+  &__item {
+    --flow-space: var(--size-120);
+
+    @include media-queries.size(tablet) {
+      --flow-space: var(--size-320);
+
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-80);
+    }
+
+    @include media-queries.size(desktop) {
+      --flow-space: var(--size-80);
+
+      display: flex;
+      flex-direction: row;
+    }
+
+    > * {
+      @include media-queries.size(tablet) {
+        border-radius: var(--size-35);
+        overflow: hidden;
+      }
+    }
+  }
+
+  &__map {
+    aspect-ratio: 7 / 6;
+
+    @include media-queries.size(mobile-only) {
+      z-index: 0;
+    }
+
+    @include media-queries.size(tablet) {
+      aspect-ratio: 5 / 2;
+    }
+
+    @include media-queries.size(desktop) {
+      aspect-ratio: 1;
+      flex-basis: calc(33% - var(--size-60));
+    }
+
+    @at-root .location__item:nth-child(odd) & {
+      @include media-queries.size(desktop) {
+        order: 2;
+      }
+    }
+  }
+
+  &__text {
+    background-image: url('./assets/shared/desktop/bg-pattern-three-circles.svg'),
+                      linear-gradient(to right, var(--clr-light-peach-transparent-20), var(--clr-light-peach-transparent-20)),
+                      linear-gradient(to right, var(--clr-white), var(--clr-white));
+    background-position: top left;
+    background-size: auto 150%;
+    background-repeat: no-repeat,
+                       repeat,
+                       repeat;
+    display: grid;
+    gap: var(--size-60);
+    justify-content: center;
+    padding: var(--size-200) var(--size-60);
+    text-align: center;
+
+    @include media-queries.size(tablet) {
+      background-position: bottom left;
+      background-size: auto 185%;
+      grid-template: 1fr 1fr / 1fr 1fr;
+      padding: var(--size-200);
+      text-align: left;
+    }
+
+    @include media-queries.size(desktop) {
+      background-size: auto 170%;
+      flex-basis: calc(66% - var(--size-60));
+    }
+  }
+
+  &__heading {
+    color: var(--clr-peach);
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-bold);
+
+    @include media-queries.size(tablet) {
+      font-size: var(--fs-5xl);
+    }
+
+    @include media-queries.size(tablet) {
+      grid-column: 1 / 3;
+      grid-row: 1 / 1;
+    }
+  }
+
+  &__subheading {
+    font-weight: var(--fw-bold);
+  }
+
+  &__contact {
+  }
+
+  &__address {
+  }
+
+  &__term,
+  &__description {
+    display: inline;
+  }
+  &__term {
+    &::after {
+      content: " : "
+    }
+  }
+
+  &__description {
+    &::after {
+      content: "";
+      display: block;
+    }
+  }
+
+  &__link {
+    text-decoration: inherit;
+  }
+}

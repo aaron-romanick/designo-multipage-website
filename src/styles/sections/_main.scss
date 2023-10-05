@@ -1,0 +1,13 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+
+.main {
+  --flow-space: var(--size-240);
+  
+  @include media-queries.size(tablet) {
+    --flow-space: var(--size-280);
+  }
+
+  @include media-queries.size(desktop) {
+    --flow-space: var(--size-320);
+  }
+}

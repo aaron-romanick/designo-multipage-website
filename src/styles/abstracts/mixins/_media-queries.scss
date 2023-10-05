@@ -1,0 +1,23 @@
+$mobile-only: 47.999em;
+$tablet: 48em;
+$desktop: 64em;
+
+
+/// Mixin to set media query sizes
+/// @author Timothy Robards
+/// @param {String} $size - Size to target with media query
+@mixin size($size) {
+  @if $size == mobile-only {
+    @media (max-width: $mobile-only) { @content; }
+  } @else if $size == tablet {
+    @media (min-width: $tablet) { @content; }
+  } @else if $size == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+}
+
+/// Mixin to set media query for preferred reduced motion
+/// @author Aaron Romanick
+@mixin prefers-reduced-motion() {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}

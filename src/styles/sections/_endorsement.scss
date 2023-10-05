@@ -1,0 +1,138 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+
+.endorsement {
+
+  align-items: center;
+  background-image: url('./assets/shared/desktop/bg-pattern-three-circles.svg'),
+                    linear-gradient(to right, var(--clr-light-peach-transparent-20), var(--clr-light-peach-transparent-20)),
+                    linear-gradient(to right, var(--clr-white), var(--clr-white));
+  background-position: bottom left;
+  background-size: auto 66.6%;
+  background-repeat: no-repeat,
+                     repeat,
+                     repeat;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+
+  @include media-queries.size(mobile-only) {
+    max-width: 100%;
+  }
+
+  @include media-queries.size(tablet) {
+    --flow-space: var(--size-280);
+    
+    background-position: center;
+    background-size: auto 90%;
+    border-radius: var(--size-35);
+  }
+
+  @include media-queries.size(desktop) {
+    --flow-space: var(--size-320);
+
+
+    background-image: url('./assets/shared/desktop/bg-pattern-two-circles.svg'),
+                      linear-gradient(to right, var(--clr-light-peach-transparent-20), var(--clr-light-peach-transparent-20)),
+                      linear-gradient(to right, var(--clr-white), var(--clr-white));
+    background-size: auto 50%;
+    text-align: left;
+  }
+
+  &::before {
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: "";
+    height: var(--size-800);
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    @include media-queries.size(desktop) {
+      height: 100%;
+      width: calc(var(--size-560) * 2);
+    }
+  }
+
+  &[data-type="world-class-talent"] {
+    @include media-queries.size(mobile-only) {
+      --flow-space: 0;
+      
+      background-position: center bottom;
+    }
+
+    @include media-queries.size(desktop) {
+      background-position: center bottom;
+    }
+
+    &::before {
+      background-image: url("/src/assets/about/mobile/image-world-class-talent.jpg");
+
+      @include media-queries.size(tablet) {
+        background-image: url("/src/assets/about/tablet/image-world-class-talent.jpg");
+      }
+
+      @include media-queries.size(desktop) {
+        background-image: url("/src/assets/about/desktop/image-world-class-talent.jpg");
+      }
+    }
+  }
+
+  &[data-type="real-deal"] {
+    @include media-queries.size(desktop) {
+      background-position: left bottom;
+    }
+
+    &::before {
+      background-image: url("/src/assets/about/mobile/image-real-deal.jpg");
+
+      @include media-queries.size(tablet) {
+        background-image: url("/src/assets/about/tablet/image-real-deal.jpg");
+      }
+
+      @include media-queries.size(desktop) {
+        background-image: url("/src/assets/about/desktop/image-real-deal.jpg");
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-60);
+    padding: calc(var(--size-200) + var(--size-800)) var(--size-60) var(--size-200);
+
+    @include media-queries.size(tablet) {
+      padding: calc(var(--size-160) + var(--size-800)) var(--size-160) var(--size-160);
+    }
+
+    @include media-queries.size(desktop) {
+      padding: var(--size-380) var(--size-140);
+    }
+
+    &[data-type="world-class-talent"] {
+      @include media-queries.size(desktop) {
+        padding-inline-start: calc(var(--size-140) + var(--size-560) * 2);
+      }
+    }
+
+    &[data-type="real-deal"] {
+      @include media-queries.size(desktop) {
+        padding-inline-end: calc(var(--size-140) + var(--size-560) * 2);
+      }
+    }
+  }
+
+  &__heading {
+    color: var(--clr-peach);
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-bold);
+
+    @include media-queries.size(tablet) {
+      font-size: var(--fs-5xl);
+    }
+  }
+}

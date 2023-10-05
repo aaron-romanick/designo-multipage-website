@@ -1,0 +1,42 @@
+---
+interface Props {
+  type: 'home'|'web-design'|'app-design'|'graphic-design'|'about'|'contact'|'cta'
+  link?: string
+}
+const { type, link } = Astro.props
+
+function generateHeadingTag(type: typeof Astro.props.type, isClosing = false) {
+  let tag = 'h1'
+  let html = '<'
+  const classes = ['hero__header']
+  if(type === 'cta') {
+    tag = 'h2'
+  }
+  if(isClosing) {
+    html += '/'
+  }
+  html += tag
+  if(!isClosing) {
+    html += ` class="${classes.join(' ')}" data-type="${type}"`
+  }
+  html += '>'
+  return html
+}
+---
+
+<section class="hero | container flow" data-type={ type }>
+  <Fragment set:html={ generateHeadingTag(type) } />
+    <slot name="heading" />
+  <Fragment set:html={ generateHeadingTag(type, true) } />
+  <p class="hero__content" data-type={ type }>
+    <slot name="content" />
+  </p>
+  { Astro.slots.has('form') && 
+    <slot name="form" />
+  }
+  { Astro.slots.has('button') && 
+    <a role="button" href={ link } class="button hero__button" data-type={ type } data-variation="on-dark">
+      <slot name="button" />
+    </a>
+  }
+</section>

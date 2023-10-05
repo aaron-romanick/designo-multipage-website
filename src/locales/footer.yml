@@ -1,0 +1,23 @@
+en:
+  address.name: Designo Central Office
+  address.street1: 3886 Wellington Street
+  address.street2: Toronto, Ontario M9C 3J5
+  address.contact: Contact Us (Central Office)
+  address.phone.term: P
+  address.phone.label: Phone number
+  address.email.term: E
+  address.email.label: Email address
+
+  social.facebook: Facebook
+  social.youtube: YouTube
+  social.twitter: Twitter
+  social.pinterest: Pinterest
+  social.instagram: Instagram
+  
+ja:
+  address.name: Designo本社
+  address.contact: お問い合わせ（本社）
+  address.phone.term: TEL
+  address.phone.label: 電話番号
+  address.email.term: メール
+  address.email.label: メールアドレス

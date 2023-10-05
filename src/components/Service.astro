@@ -1,0 +1,27 @@
+---
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import dictionary from '../locales/service.yml'
+
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+
+interface Props {
+  ariaLabel: string
+  link: string
+  type: 'web-design'|'app-design'|'graphic-design'
+}
+const { ariaLabel, link, type } = Astro.props
+---
+
+<a href={ link } class="service__link" data-type={ type } aria-label={ ariaLabel }>
+  <span class="service__title">
+    <slot name="title" />
+  </span>
+  <span class="service__sub">
+    <span>{ t('link') }</span>
+    <svg aria-hidden="true" stroke="currentColor" fill="none" stroke-width="4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </span>
+</a>

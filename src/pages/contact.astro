@@ -1,0 +1,178 @@
+---
+import FormError from '../components/FormError.astro'
+import Hero from '../components/Hero.astro'
+import Place from '../components/Place.astro'
+import Layout from '../layouts/Base.astro'
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import contactDict from '../locales/contact.yml'
+import placeDict from '../locales/place.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/shared/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tContact = useTranslations(lang, contactDict)
+const tPlace = useTranslations(lang, placeDict)
+---
+
+<Layout title={ `${tContact('title')} | ${tIndex('title.brand')}` } hasFooterOverlap="true">
+  <Hero type="contact">
+    <Fragment slot="heading">{ tContact('hero.heading') }</Fragment>
+    <Fragment slot="content">{ tContact('hero.content') }</Fragment>
+    <form method="post" slot="form" class="contact__form" data-type="contact" data-submit-message={ tContact('form.message.submit') } data-popup-close={ tContact('form.close.name') }>
+      <div class="contact__control">
+        <label class="contact__label" for="name" data-visually-hidden="all">{ tContact('form.name.label') }</label>
+        <input class="contact__input" name="name" type="text" placeholder={ tContact('form.name.placeholder') } data-error-required={ tContact('form.error.required') } />
+        <FormError />
+      </div>
+      <div class="contact__control">
+        <label class="contact__label" for="email" data-visually-hidden="all">{ tContact('form.email.label') }</label>
+        <input class="contact__input" name="email" type="email" placeholder={ tContact('form.email.placeholder') } data-error-required={ tContact('form.error.required') } data-error-email={ tContact('form.error.email') } />
+        <FormError />
+      </div>
+      <div class="contact__control">
+      <label class="contact__label" for="phone" data-visually-hidden="all">{ tContact('form.phone.label') }</label>
+        <input class="contact__input" name="phone" type="tel" placeholder={ tContact('form.phone.placeholder') } data-error-phone={ tContact('form.error.phone') } />
+        <FormError />
+      </div>
+      <div class="contact__control">
+        <label class="contact__label" for="message" data-visually-hidden="all">{ tContact('form.message.label') }</label>
+        <textarea class="contact__textarea" name="message" placeholder={ tContact('form.message.placeholder') } data-error-required={ tContact('form.error.required') }></textarea>
+        <FormError />
+      </div>
+      <button type="submit" class="button contact__button" data-type="contact" data-variation="on-dark" disabled>{ tContact('form.submit.label') }</button>
+    </form>
+  </Hero>
+  <ul class="place__list | container">
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-canada.svg" link={ getLocaleUrl('/locations#canada', lang) } imageAlt={ tPlace('canada.imageAlt') }>
+      <Fragment slot="name">{ tPlace('canada.name') }</Fragment>
+    </Place>
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-australia.svg" link={ getLocaleUrl('/locations#australia', lang) } imageAlt={ tPlace('australia.imageAlt') }>
+      <Fragment slot="name">{ tPlace('australia.name') }</Fragment>
+    </Place>
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-united-kingdom.svg" link={ getLocaleUrl('/locations#united-kingdom', lang) } imageAlt={ tPlace('united-kingdom.imageAlt') }>
+      <Fragment slot="name">{ tPlace('united-kingdom.name') }</Fragment>
+    </Place>
+  </ul>
+</Layout>
+
+<script>
+import 'toastify-js/src/toastify.css'
+import Toastify from 'toastify-js'
+
+function isEmpty(formInput: HTMLFormElement) {
+  return formInput.value === ""
+}
+
+function hasValidationType(formInput: HTMLFormElement, validationType: string) {
+  return !!formInput.dataset[`error${ validationType.charAt(0).toUpperCase() + validationType.slice(1) }`]
+}
+
+function isValidEmail(formInput: HTMLFormElement) {
+  const emailRegex = /^([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@([0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)*|\[((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|IPv6:((((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){6}|::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){5}|[0-9A-Fa-f]{0,4}::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){4}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):)?(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){3}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,2}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){2}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,3}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,4}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,5}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,6}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)|(?!IPv6:)[0-9A-Za-z-]*[0-9A-Za-z]:[!-Z^-~]+)])$/
+
+  return emailRegex.test(formInput.value)
+}
+
+function isValidPhone(formInput: HTMLFormElement) {
+  const phoneRegex = /^[0-9+().,;/*# -]*$/
+
+return phoneRegex.test(formInput.value)
+}
+
+function hasAnyErrors() {
+  const formInputs: NodeListOf<HTMLInputElement | HTMLTextAreaElement> = document.querySelectorAll('.contact__form input, .contact__form textarea')
+  const formButton: HTMLButtonElement = document.querySelector('.contact__form .contact__button') as HTMLButtonElement
+  const hasErrors = Array.from(formInputs).some(input => {
+    return !!input.dataset.hasError ||
+    (!input.dataset.isTouched && input.dataset.errorRequired) ||
+    input.dataset.isTouched === 'false'
+  })
+  formButton.disabled = hasErrors
+  return hasErrors
+}
+
+function validate(evt: Event) {
+  const formInputTarget = evt.target as HTMLFormElement
+  const errorMessageElement = formInputTarget.nextElementSibling?.querySelector('.error__message')
+  if(!formInputTarget.dataset.isTouched) {
+    formInputTarget.dataset.isTouched = "true"
+  }
+  if(errorMessageElement) {
+    if(isEmpty(formInputTarget) && hasValidationType(formInputTarget, 'required') && formInputTarget.dataset.errorRequired) {
+      formInputTarget.dataset.hasError = 'true'
+      errorMessageElement.textContent = formInputTarget.dataset.errorRequired
+    } else if(hasValidationType(formInputTarget, 'email') && !isValidEmail(formInputTarget) && formInputTarget.dataset.errorEmail) {
+      formInputTarget.dataset.hasError = 'true'
+      errorMessageElement.textContent = formInputTarget.dataset.errorEmail
+    } else if(hasValidationType(formInputTarget, 'phone') && !isValidPhone(formInputTarget) && formInputTarget.dataset.errorPhone) {
+      formInputTarget.dataset.hasError = 'true'
+      errorMessageElement.textContent = formInputTarget.dataset.errorPhone
+    } else if(formInputTarget.dataset.hasError) {
+      delete formInputTarget.dataset.hasError
+      errorMessageElement.textContent = ""
+    }
+  }
+  hasAnyErrors()
+}
+
+function initializeFormValidation() {
+  resetForm()
+  const formInputs = document.querySelectorAll('.contact__form input, .contact__form textarea')
+  const eventsToHandle = [
+    'blur',
+    'input'
+  ]
+  formInputs.forEach(formInput => {
+    eventsToHandle.forEach(eventToHandle => {
+      formInput.addEventListener(eventToHandle, validate)
+    })
+  })
+}
+
+function ToastNode() {
+  const form = document.querySelector('.contact__form') as HTMLFormElement
+  const div = document.createElement('div')
+  div.setAttribute('class', 'toast')
+  div.innerText = form.dataset.submitMessage as string
+  const closeButton = document.createElement('button')
+  closeButton.ariaLabel = form.dataset.popupClose as string
+  closeButton.setAttribute('class', 'toast-close')
+  closeButton.innerHTML = '&times;'
+  div.appendChild(closeButton)
+  return div
+}
+
+function handleSubmit(evt: MouseEvent) {
+  evt.preventDefault()
+  resetForm()
+
+  const toast = Toastify({
+    className: 'toast',
+    duration: 5000,
+    close: false,
+    gravity: 'top', // `top` or `bottom`
+    node: ToastNode(),
+    position: 'center', // `left`, `center` or `right`
+    onClick: function() {
+      toast.hideToast()
+    },
+  }).showToast()
+}
+
+function resetForm() {
+  const form = document.querySelector('.contact__form') as HTMLFormElement
+  form.reset()
+  hasAnyErrors()
+}
+
+function initializeForm() {
+  const formButton = document.querySelector('.contact__form .contact__button') as HTMLButtonElement
+  formButton.addEventListener('click', handleSubmit)
+  initializeFormValidation()
+}
+
+initializeForm()
+</script>

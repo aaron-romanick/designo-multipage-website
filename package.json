@@ -1,0 +1,26 @@
+{
+  "name": "designo-multipage-website",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^3.2.0",
+    "astro-i18n-aut": "^0.4.23",
+    "leaflet": "^1.9.4",
+    "sharp": "^0.32.6",
+    "toastify-js": "^1.12.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-yaml": "^4.1.1",
+    "@types/leaflet": "^1.9.6",
+    "@types/toastify-js": "^1.12.1",
+    "sass": "^1.68.0"
+  }
+}

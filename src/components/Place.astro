@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets'
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import { useImages } from '../utils/images'
+import dictionary from '../locales/place.yml'
+
+interface Props {
+  imageAlt: string
+  imagesGlob: Record<string, any>
+  imagePath: string
+  link: string
+}
+const { imageAlt, imagesGlob, imagePath, link } = Astro.props
+
+const imageFromGlob = useImages(imagesGlob)
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<li class="place__item">
+  <div class="place__background">
+    <Image src={ imageFromGlob(imagePath) } class="place__image" alt={ imageAlt } />
+  </div>
+  <div class="place__text | flow">
+    <h2 class="place__heading">
+      <slot name="name" />
+    </h2>
+    <a role="button" href={ link } class="button place__button">
+      { t('link') }
+    </a>
+  </div>
+</li>

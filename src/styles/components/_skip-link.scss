@@ -1,0 +1,22 @@
+@use '/src/styles/abstracts/mixins/smallcaps' as *;
+
+.skip {
+  &__link {
+    @include smallcaps(var(--fs-sm));
+
+    background-color: var(--clr-peach);
+    color: var(--clr-white);
+    border-radius: var(--size-20);
+    font-weight: var(--fw-bold);
+    margin: var(--size-20);
+    padding: var(--size-30);
+    position: absolute;
+    text-decoration: inherit;
+    transform: translateX(calc(-100% - var(--size-20)));
+    transition-property: none;
+
+    &:focus-visible {
+      transform: translateX(0);
+    }
+  }
+}

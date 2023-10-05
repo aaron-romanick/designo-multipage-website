@@ -1,0 +1,111 @@
+---
+import Navigation from './Navigation.astro'
+---
+
+<header class="header">
+  <nav class="header__nav | container" aria-label="Main navigation menu">
+    <div class="header__backdrop"></div>
+    <Navigation textMode="dark" menuId="main-menu" />
+    <a class="header__burger" role="button" aria-controls="main-menu" aria-expanded="false" aria-label="Navigation menu toggle">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </nav>
+</header>
+
+<script>
+  function hideHeaderMenuOnClickOutside(evt: MouseEvent) {
+    if(evt.target && isAriaExpanded(headerNavigationElements.burger)) {
+      const eventTarget = evt.target as HTMLElement
+      if(
+        eventTarget.closest(headerNavigationWrapperSelector) === null &&
+        eventTarget.closest(headerNavigationBurgerSelector) === null &&
+        eventTarget !== headerNavigationElements.burger
+      ) {
+        handleHeaderBurgerToggle()
+      }
+    }
+  }
+
+  function isAriaExpanded(element: HTMLElement) {
+    const ariaExpanded = element.getAttribute('aria-expanded')
+    return ariaExpanded === 'true'
+  }
+
+  // Function to toggle the 'aria-expanded' attribute
+  function toggleAriaExpanded(element: HTMLElement) {
+    const ariaExpanded = element.getAttribute('aria-expanded')
+    if(ariaExpanded) {
+      element.setAttribute('aria-expanded', ariaExpanded === 'false' ? 'true' : 'false')
+    }
+    toggleBodyClipping()
+  }
+
+  // Toggle body clipping
+  function toggleBodyClipping() {
+    if(isAriaExpanded(headerNavigationElements.burger)) {
+      document.body.dataset.state = 'is-clipped'
+    } else if(document.body.dataset.state) {
+      delete document.body.dataset.state
+    }
+  }
+
+  // Function to handle the 'transitionend' event and remove the 'data-state' attribute
+  function deleteStateOnTransitionEnd(evt: Event) {
+    const element = evt.target as HTMLElement
+    if(element && element.dataset.state) {
+      delete element.dataset.state
+      element.removeEventListener('transitionend', deleteStateOnTransitionEnd)
+    }
+  }
+
+  // Handle the toggle event on the navBurger
+  async function handleHeaderBurgerToggle() {
+
+    // Toggle the 'aria-expanded' attribute
+    toggleAriaExpanded(headerNavigationElements.burger)
+
+    // Find the elements to animate
+    const elementsToAnimate: (HTMLUListElement | HTMLDivElement)[] = [
+      headerNavigationElements.list,
+      headerNavigationElements.backdrop,
+    ]
+
+    // Iterate over the elements to apply animation and state changes
+    elementsToAnimate.forEach(element => {
+
+      const states = element.dataset.state
+        ? element.dataset.state.split(' ')
+        : []
+
+      // Add 'is-deactivating' state for the closing animation
+      if(states.includes('is-active') && !states.includes('is-deactivating')) {
+        element.dataset.state += ' is-deactivating'
+        // Listen for the 'transitionend' event on element
+        element.addEventListener('transitionend', deleteStateOnTransitionEnd, { once: true })
+      } else {
+        // Remove 'is-deactivating' state and set 'is-active' state for opening animation
+        element.removeEventListener('transitionend', deleteStateOnTransitionEnd)
+        element.dataset.state = 'is-active'
+      }
+    })
+  }
+
+  // Header nav list wrapper selector
+  const headerNavigationWrapperSelector = '.header .navigation__wrapper'
+  const headerNavigationBurgerSelector = '.header__burger'
+
+  // Header nav elements often referenced in functions
+  const headerNavigationElements = {
+    backdrop: document.querySelector('.header__backdrop') as HTMLDivElement,
+    burger: document.querySelector(headerNavigationBurgerSelector) as HTMLAnchorElement,
+    list: document.querySelector(headerNavigationWrapperSelector) as HTMLUListElement,
+  }
+
+  // Add a click event listener to the NavigationBurger element
+  headerNavigationElements.burger.addEventListener('click', handleHeaderBurgerToggle)
+
+  // Add a click event listener that fires whenever a click is made outside the header nav dropdown menu in mobile resolutions
+  document.addEventListener('click', hideHeaderMenuOnClickOutside)
+</script>

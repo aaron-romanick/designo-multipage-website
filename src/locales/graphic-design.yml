@@ -1,0 +1,35 @@
+en:
+  title: Graphic Design
+
+  hero.heading: Graphic Design
+  hero.content: We deliver eye-catching branding materials that are tailored to meet your business objectives.
+
+  project.tim-brown.ariaLabel: This is a book cover designed for Tim Brown's new release, 'Change'.
+  project.tim-brown.title: Tim Brown
+  project.tim-brown.content: A book cover designed for Tim Brown's new release, 'Change'
+
+  project.boxed-water.ariaLabel: Boxed Water is a simple packaging concept.
+  project.boxed-water.title: Boxed Water
+  project.boxed-water.content: A simple packaging concept made for Boxed Water
+
+  project.science.ariaLabel: Science is a poster made in collaboration with the Federal Art Project.
+  project.science.title: Science!
+  project.science.content: A poster made in collaboration with the Federal Art Project
+    
+ja:
+  title: グラフィックデザイン
+
+  hero.heading: グラフィックデザイン
+  hero.content: お客様のビジネス目的に合わせた、人目を引くブランディング資料をお届けします。
+
+  project.tim-brown.ariaLabel: ティム・ブラウンの新作『Change』のためにデザインされたブックカバー。
+  project.tim-brown.title: ティム・ブラウン
+  project.tim-brown.content: ティム・ブラウンの新作『Change』のためにデザインされたブックカバー
+
+  project.boxed-water.ariaLabel: Boxed Waterは、シンプルなパッケージ・コンセプトだ。
+  project.boxed-water.title: Boxed Water
+  project.boxed-water.content: Boxed Waterために作られたシンプルなパッケージ・コンセプト
+
+  project.science.ariaLabel: Scienceは、フェデラル・アート・プロジェクトとの共同制作によるポスターである。
+  project.science.title: Science!
+  project.science.content: フェデラル・アート・プロジェクトとのコラボレーションによるポスター

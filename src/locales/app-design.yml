@@ -1,0 +1,46 @@
+en:
+  title: App Design
+
+  hero.heading: App Design
+  hero.content: Our mobile designs bring intuitive digital solutions to your customers right at their fingertips.
+
+  project.airfilter.ariaLabel: Airfilter is solving the problem of poor indoor air quality by filtering the air.
+  project.airfilter.title: Airfilter
+  project.airfilter.content: Solving the problem of poor indoor air quality by filtering the air
+
+  project.eyecam.ariaLabel: Eyecam is a product that lets you edit your favorite photos and videos at any time.
+  project.eyecam.title: Eyecam
+  project.eyecam.content: Product that lets you edit your favorite photos and videos at any time
+
+  project.faceit.ariaLabel: Faceit is an app where you get to meet your favorite internet superstar.
+  project.faceit.title: Faceit
+  project.faceit.content: Get to meet your favorite internet superstar with the faceit app
+
+  project.todo.ariaLabel: Todo is a todo app that features cloud sync with light and dark mode.
+  project.todo.title: Todo
+  project.todo.content: A todo app that features cloud sync with light and dark mode
+
+  project.loopstudios.ariaLabel: Loopstudios is a VR experience app made for Loopstudios.
+  project.loopstudios.title: Loopstudios
+  project.loopstudios.content: A VR experience app made for Loopstudios
+    
+ja:
+  title: ウェブデザイン
+
+  hero.heading: アプリデザイン
+  hero.content: 弊社のモバイルデザインは、直感的なデジタルソリューションをお客様の指先にお届けします。
+
+  project.airfilter.ariaLabel: Airfilterは、空気をろ過することで、室内空気の質の低下という問題を解決しています。
+  project.airfilter.content: 空気をろ過することで、室内空気の質の低下という問題を解決しています
+
+  project.eyecam.ariaLabel: Eyecamは、お気に入りの写真やビデオをいつでも編集できる製品です。
+  project.eyecam.content: お気に入りの写真やビデオをいつでも編集できる製品
+
+  project.faceit.ariaLabel: Faceitは、お気に入りのインターネット・スーパースターに会えるアプリです。
+  project.faceit.content: Faceitアプリでお気に入りのスーパースターに会いましょう
+
+  project.todo.ariaLabel: Todoは、ライトモードとダークモードを備えたクラウド同期機能を備えたよることのアプリです。
+  project.todo.content: ライトモードとダークモードを備えたクラウド同期機能を備えたよることのアプリ
+
+  project.loopstudios.ariaLabel: Loopstudiosは、VR体験アプリです。
+  project.loopstudios.content: Loopstudiosのために作られたVR体験アプリ

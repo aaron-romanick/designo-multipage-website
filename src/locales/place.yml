@@ -1,0 +1,23 @@
+en:
+  canada.name: Canada
+  canada.imageAlt: CN Tower
+
+  australia.name: Australia
+  australia.imageAlt: Sydney Opera House
+
+  united-kingdom.name: United Kingdom
+  united-kingdom.imageAlt: London Bridge
+
+  link: See Location
+      
+ja:
+  canada.name: カナダ
+  canada.imageAlt: CNタワー
+
+  australia.name: オーストラリア
+  australia.imageAlt: シドニー・オペラハウス
+
+  united-kingdom.name: イギリス
+  united-kingdom.imageAlt: ロンドン橋
+
+  link: 支社の詳細

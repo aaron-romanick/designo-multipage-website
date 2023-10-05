@@ -1,0 +1,25 @@
+---
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
+import BaseLayout from './Base.astro';
+import Hero from '../components/Hero.astro'
+import { useTranslations } from '../i18n/utils'
+import dictionary from '../locales/cta.yml'
+
+interface Props {
+  hasFooterOverlap?: 'true'|'false'
+	title: string
+}
+
+const { hasFooterOverlap, title } = Astro.props
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<BaseLayout title={ title } hasFooterOverlap={ hasFooterOverlap ?? 'false' }>
+  <slot />
+  <Hero type="cta" link={ getLocaleUrl('/contact', lang) }>
+    <Fragment slot="heading">{ t('heading') }</Fragment>
+    <Fragment slot="content">{ t('content') }</Fragment>
+    <Fragment slot="button">{ t('button') }</Fragment>
+  </Hero>
+</BaseLayout>

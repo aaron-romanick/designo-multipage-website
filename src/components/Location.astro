@@ -1,0 +1,49 @@
+---
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import dictionary from '../locales/locations.yml'
+
+interface Props {
+  mapId: string
+}
+
+const { mapId } = Astro.props
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<div class="location__map" id={ mapId }></div>
+<div class="location__text">
+  <h2 class="location__heading">
+    <slot name="heading" />
+  </h2>
+  <address class="location__address">
+    <h3 class="location__subheading">
+      <slot name="name" />
+    </h3>
+    <p class="location__details">
+      <slot name="address1" />
+    </p>
+    <p class="location__details">
+      <slot name="address2" />
+    </p>
+  </address>
+  <address class="location__address">
+    <h3 class="location__subheading">{ t('term.contact)') }</h3>
+    <dl class="location__contact">
+      <dt class="location__term" aria-label={ t('phone.label') }>{ t('phone.term') }</dt>
+      <dd class="location__description">
+        <a class="location__link" href="tel:+12538638967">
+          <slot name="phone" />
+        </a>
+      </dd>
+      <dt class="location__term" aria-label={ t('email.label') }>{ t('email.term') }</dt>
+      <dd class="location__description">
+        <a class="location__link" href="mailto:contact@designo.co">
+          <slot name="email" />
+        </a>
+      </dd>
+    </dl>
+  </address>
+</div>
+</section>

@@ -1,0 +1,22 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+
+.toast {
+  align-items: center;
+  background-image: linear-gradient(to right, var(--clr-green), var(--clr-light-green));
+  color: var(--clr-white);
+  display: inline-flex;
+  gap: var(--size-30);
+  width: 100%;
+
+  &-close {
+    color: var(--clr-white-transparent-60);
+    font-size: var(--fs-3xl);
+    opacity: 1;
+    transition: color var(--speed-fastest);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-white-transparent-90);
+    }
+  }
+}

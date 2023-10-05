@@ -1,0 +1,18 @@
+en:
+  type.web-design: Web Design
+  type.app-design: App Design
+  type.graphic-design: Graphic Design
+  label.web-design: View web design projects
+  label.app-design: View app design projects
+  label.graphic-design: View graphic design projects
+  link: View Projects
+
+ja:
+  type.web-design: ウェブデザイン
+  type.app-design: アプリデザイン
+  type.graphic-design: グラフィックデザイン
+  label.web-design: ウェブデザインのプロジェクトを閲覧
+  label.app-design: アプリデザインのプロジェクトを閲覧
+  label.graphic-design: グラフィックデザインのプロジェクトを閲覧
+  link: プロジェクト一覧
+  

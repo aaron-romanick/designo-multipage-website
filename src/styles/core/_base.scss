@@ -1,0 +1,55 @@
+@use '/src/styles/abstracts/mixins/prefix' as prefix;
+
+html {
+  font-size: var(--ff-base);
+}
+
+body {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+  font-family: var(--ff-primary);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-normal);
+
+  @at-root html[lang="ja"] & {
+    font-family: var(--ff-primary-ja);
+  }
+
+  &[data-state="is-clipped"] {
+    overflow: hidden;
+  }
+}
+
+a, button {
+  transition-duration: var(--speed-fastest);
+  transition-property: backdrop-filter,
+                       background-color,
+                       border-color,
+                       box-shadow,
+                       color,
+                       fill,
+                       filter,
+                       opacity,
+                       stroke,
+                       text-decoration-color,
+                       transform,
+                       -webkit-backdrop-filter;
+  transition-timing-function: var(--tf-standard);
+}
+
+a {
+  color: currentColor;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+button {
+  @include prefix.properties((
+    appearance: none,
+  ), (moz, webkit));
+  background: none;
+  border: none;
+  cursor: pointer;
+}

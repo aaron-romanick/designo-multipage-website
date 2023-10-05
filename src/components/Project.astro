@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets'
+import { useImages } from '../utils/images'
+
+interface Props {
+  ariaLabel: string
+  imagesGlob: Record<string, any>
+  imagePath: string
+}
+const { ariaLabel, imagesGlob, imagePath } = Astro.props
+const imageFromGlob = useImages(imagesGlob)
+---
+
+<a href="#" class="project__link" aria-label={ ariaLabel }>
+  <Image src={ imageFromGlob(imagePath) } class="project__image" alt="" />
+  <div class="project__text | flow">
+    <h2 class="project__title">
+      <slot name="title" />
+    </h2>
+    <p class="project__content">
+      <slot name="content" />
+    </p>
+  </div>
+</a>

@@ -1,0 +1,100 @@
+@use '../abstracts/mixins/media-queries' as media-queries;
+
+.language {
+  &__dialog {
+    display: flex;
+    transition: opacity var(--speed-fastest) var(--tf-standard),
+                transform var(--speed-fastest) var(--tf-standard);
+
+    &[open] {
+      align-items: start;
+      background-color: var(--clr-white);
+      display: flex;
+      gap: var(--size-40);
+      height: 100vh;
+      height: 100dvh;
+      justify-content: center;
+      max-height: none;
+      max-width: none;
+      opacity: 1;
+      padding-block-start: var(--size-140);
+      transform: translateY(0);
+      visibility: visible;
+      width: 100vw;
+    }
+    &:not([open]) {
+      visibility: hidden;
+    }
+
+    &,
+    &[data-state="is-deactivating"] {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+  }
+
+  &__wrapper {
+    display: grid;
+    gap: var(--size-40);
+    width: min(media-queries.$tablet, calc(100% - var(--size-40)));
+    
+    @include media-queries.size(tablet) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__heading {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    padding-inline: var(--size-50);
+
+    @include media-queries.size(tablet) {
+      font-size: var(--fs-4xl);
+      grid-row: 2 / 3;
+      grid-column: 1 / 4;
+    }
+  }
+
+  &__locale {
+    background-color: transparent;
+    color: var(--clr-black);
+    font-size: var(--fs-base);
+    text-transform: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-black);
+      background-color: var(--clr-light-gray-transparent-50);
+    }
+
+    &[data-state="is-active"] {
+      background-color: var(--clr-light-gray);
+    }
+  }
+
+  &__close {
+    aspect-ratio: 1;
+    background-color: transparent;
+    color: var(--clr-black);
+    justify-self: end;
+    border-radius: var(--size-max);
+    font-size: var(--fs-2xl);
+    min-width: auto;
+    padding: var(--size-40);
+
+    @include media-queries.size(tablet) {
+      grid-column: 1 / 4;
+      grid-row: 1 / 2
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-black);
+      background-color: var(--clr-light-gray-transparent-50);
+    }
+
+    &::before {
+      content: "\2715";
+    }
+  }
+}

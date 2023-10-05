@@ -1,0 +1,82 @@
+---
+//import 'leaflet/dist/leaflet.css'
+
+import Location from '../components/Location.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import dictionary from '../locales/locations.yml'
+
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<Layout title="Locations | Designo">
+  <h1 data-visually-hidden="all">Locations</h1>
+  <ul class="location__list | container flow">
+    <li class="location__item">
+      <Location mapId="canada">
+        <Fragment slot="heading">{ t('canada.heading') }</Fragment>
+        <Fragment slot="name">{ t('canada.address.name') }</Fragment>
+        <Fragment slot="address1">{ t('canada.address.street1') }</Fragment>
+        <Fragment slot="address2">{ t('canada.address.street2') }</Fragment>
+        <Fragment slot="phone">+1 253-863-8967</Fragment>
+        <Fragment slot="email">contact@designo.co</Fragment>
+      </Location>
+    </li>
+    <li class="location__item">
+      <Location mapId="australia">
+        <Fragment slot="heading">{ t('australia.heading') }</Fragment>
+        <Fragment slot="name">{ t('australia.address.name') }</Fragment>
+        <Fragment slot="address1">{ t('australia.address.street1') }</Fragment>
+        <Fragment slot="address2">{ t('australia.address.street2') }</Fragment>
+        <Fragment slot="phone">(02) 6720 9092</Fragment>
+        <Fragment slot="email">contact@designo.au</Fragment>
+      </Location>
+    </li>
+    <li class="location__item">
+      <Location mapId="united-kingdom">
+        <Fragment slot="heading">{ t('united-kingdom.heading') }</Fragment>
+        <Fragment slot="name">{ t('united-kingdom.address.name') }</Fragment>
+        <Fragment slot="address1">{ t('united-kingdom.address.street1') }</Fragment>
+        <Fragment slot="address2">{ t('united-kingdom.address.street2') }</Fragment>
+        <Fragment slot="phone">078 3115 1400</Fragment>
+        <Fragment slot="email">contact@designo.uk</Fragment>
+      </Location>
+    </li>
+  </ul>
+</Layout>
+
+<script>
+  import { map, latLng, tileLayer, marker } from 'leaflet'
+  const urlTemplate = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+
+  const mapOptions = {
+    zoomControl: false,
+  }
+
+  const canadaLatLng = latLng(43.657596, -79.461414)
+  const australiaLatLng = latLng(-30.329194, 149.788186)
+  const unitedKingdomLatLng = latLng(51.732456, -3.862007)
+
+  const canada = map('canada', mapOptions).setView(canadaLatLng, 14)
+  const australia = map('australia', mapOptions).setView(australiaLatLng, 14)
+  const unitedKingdom = map('united-kingdom', mapOptions).setView(unitedKingdomLatLng, 14)
+  
+  const tileLayerOptions = {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target=_blank"">OpenStreetMap</a>',
+    detectRetina: true,
+  }
+
+  tileLayer(urlTemplate, tileLayerOptions).addTo(canada)
+  tileLayer(urlTemplate, tileLayerOptions).addTo(australia)
+  tileLayer(urlTemplate, tileLayerOptions).addTo(unitedKingdom)
+
+  const canadaMarker = marker(canadaLatLng)
+  const australiaMarker = marker(australiaLatLng)
+  const unitedKingdomMarker = marker(unitedKingdomLatLng)
+
+  canadaMarker.addTo(canada)
+  australiaMarker.addTo(australia)
+  unitedKingdomMarker.addTo(unitedKingdom)
+</script>

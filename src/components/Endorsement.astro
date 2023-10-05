@@ -1,0 +1,16 @@
+---
+interface Props {
+  type: 'world-class-talent'|'real-deal'
+}
+
+const { type } = Astro.props
+---
+
+<section class="endorsement | container" data-type={ type }>
+  <div class="endorsement__text" data-type={ type }>
+    <h2 class="endorsement__heading">
+      <slot name="heading" />
+    </h2>
+    <slot name="content" />
+  </div>
+</section>

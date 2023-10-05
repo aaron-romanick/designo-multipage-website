@@ -1,0 +1,21 @@
+@mixin color-variables($color-list) {
+  @each $color-name, $color-value in $color-list {
+
+    // Break base colors down into their respective hue, saturation and lightness
+    $hue: nth($color-value, 1);
+    $saturation: nth($color-value, 2);
+    $lightness: nth($color-value, 3);
+
+    // Output base color variable
+    --clr-#{$color-name}: hsl(#{$hue}, #{$saturation}, #{$lightness});
+
+    // Assign various transparent versions of base colors in steps of 10
+    @for $i from 1 through 9 {
+      $opacity: calc($i / 10);
+      $color-transparent-value: hsla($hue, $saturation, $lightness, $opacity);
+
+      // Output transparent version of base color variable
+      --clr-#{$color-name}-transparent-#{$i * 10}: #{$color-transparent-value};
+    }
+  }
+}

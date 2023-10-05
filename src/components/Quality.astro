@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets'
+import { useImages } from '../utils/images'
+
+interface Props {
+  imageAlt: string
+  imagesGlob: Record<string, any>
+  imagePath: string
+}
+const { imageAlt, imagesGlob, imagePath } = Astro.props
+const imageFromGlob = useImages(imagesGlob)
+---
+
+<li class="quality__item">
+  <div class="quality__background">
+    <Image src={ imageFromGlob(imagePath) } class="quality__image" alt={ imageAlt } />
+  </div>
+  <div class="quality__text | flow">
+    <h2 class="quality__heading">
+      <slot name="heading" />
+    </h2>
+    <p class="quality__content">
+      <slot name="content" />
+    </p>
+  </div>
+</li>

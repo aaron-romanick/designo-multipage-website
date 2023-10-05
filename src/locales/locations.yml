@@ -1,0 +1,38 @@
+en:
+  title: Contact Us
+
+  term.contact: Contact
+  phone.term: P
+  phone.label: Phone number
+  email.term: E
+  email.label: Email address
+  
+  canada.heading: Canada
+  canada.address.name: Designo Central Office
+  canada.address.street1: 3886 Wellington Street
+  canada.address.street2: Toronto, Ontario M9C 3J5
+  
+  australia.heading: Australia
+  australia.address.name: Designo AU Office
+  australia.address.street1: 19 Balonne Street
+  australia.address.street2: New South Wales 2443
+  
+  united-kingdom.heading: United Kingdom
+  united-kingdom.address.name: Designo UK Office
+  united-kingdom.address.street1: 13 Colorado Way
+  united-kingdom.address.street2: Rhyd-y-fro SA8 9GA
+      
+ja:
+  title: お問い合わせ
+
+  term.contact: 連絡先
+  phone.term: TEL
+  phone.label: 電話番号
+  email.term: メール
+  email.label: メールアドレス
+  
+  canada.heading: カナダ
+  
+  australia.heading: オーストラリア
+  
+  united-kingdom.heading: イギリス

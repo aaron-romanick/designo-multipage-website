@@ -1,0 +1,71 @@
+---
+import Hero from '../components/Hero.astro'
+import Project from '../components/Project.astro';
+import Service from '../components/Service.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import serviceDict from '../locales/service.yml'
+import webDesignDict from '../locales/web-design.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/web-design/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tService = useTranslations(lang, serviceDict)
+const tWebDesign = useTranslations(lang, webDesignDict)
+---
+
+<Layout title={ `${tWebDesign('title')} | ${tIndex('title.brand')}` }>
+  <Hero type="web-design">
+    <Fragment slot="heading">{ tWebDesign('hero.heading') }</Fragment>
+    <Fragment slot="content">{ tWebDesign('hero.content') }</Fragment>
+  </Hero>
+  <ul class="project__list | container">
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-express.jpg" ariaLabel={ tWebDesign('project.expess.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.expess.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.expess.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-transfer.jpg" ariaLabel={ tWebDesign('project.transfer.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.transfer.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.transfer.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-photon.jpg" ariaLabel={ tWebDesign('project.photon.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.photon.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.photon.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-builder.jpg" ariaLabel={ tWebDesign('project.builder.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.builder.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.builder.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-blogr.jpg" ariaLabel={ tWebDesign('project.blogr.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.blogr.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.blogr.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/web-design/desktop/image-camp.jpg" ariaLabel={ tWebDesign('project.camp.ariaLabel') }>
+        <Fragment slot="title">{ tWebDesign('project.camp.title') }</Fragment>
+        <Fragment slot="content">{ tWebDesign('project.camp.content') }</Fragment>
+      </Project>
+    </li>
+  </ul>
+  <div class="service__list | container">
+    <Service type="app-design" link="app-design" ariaLabel={ tService('label.app-design') }>
+      <Fragment slot="title">{ tService('type.app-design') }</Fragment>
+    </Service>
+    <Service type="graphic-design" link="graphic-design" ariaLabel={ tService('label.graphic-design') }>
+      <Fragment slot="title">{ tService('type.graphic-design') }</Fragment>
+    </Service>
+  </div>
+</Layout>

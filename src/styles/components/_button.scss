@@ -1,0 +1,41 @@
+@use '../abstracts/mixins/media-queries' as media-queries;
+@use '/src/styles/abstracts/mixins/smallcaps' as *;
+
+.button {
+  @include smallcaps(var(--fs-sm));
+
+  align-items: center;
+  background-color: var(--clr-peach);
+  color: var(--clr-white);
+  border-radius: var(--size-20);
+  display: inline-flex;
+  font-weight: var(--fw-bold);
+  justify-content: center;
+  min-width: var(--size-380);
+  padding: var(--size-40) var(--size-60);
+  text-decoration: inherit;
+
+  &:disabled {
+    &:hover {
+      background-color: var(--clr-peach);
+      color: var(--clr-white);
+    }
+  }
+
+  &[data-variation="on-dark"] {
+    background-color: var(--clr-white);
+    color: var(--clr-dark-gray);
+
+    &:disabled {
+      &:hover {
+        background-color: var(--clr-white);
+        color: var(--clr-dark-gray);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: var(--clr-light-peach);
+    color: var(--clr-white);
+  }
+}

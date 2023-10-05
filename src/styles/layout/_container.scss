@@ -1,0 +1,11 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+
+.container {
+  --margin-inline-size: var(--size-60);
+  margin-inline: auto;
+  max-width: min(1280px, calc(100% - var(--margin-inline-size) * 2));
+
+  @include media-queries.size(tablet) {
+    --margin-inline-size: var(--size-100);
+  }
+}

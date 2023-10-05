@@ -1,0 +1,5 @@
+@mixin smallcaps($font-size: inherit) {
+  font-size: $font-size;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

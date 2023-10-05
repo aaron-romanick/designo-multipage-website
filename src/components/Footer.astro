@@ -1,0 +1,83 @@
+---
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import dictionary from '../locales/footer.yml'
+import Navigation from './Navigation.astro'
+
+interface Props {
+  hasFooterOverlap?: 'true'|'false'
+}
+
+const { hasFooterOverlap } = Astro.props
+
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<footer class="footer" data-variation={ hasFooterOverlap && hasFooterOverlap === 'true' ? 'no-overlap' : null }>
+  <nav aria-label="Footer navigation menu" class="footer__nav | container">
+    <Navigation textMode="light" />
+  </nav>
+  <div class="footer__contact | container">
+    <address class="footer__address">
+      <p class="address__heading">{ t('address.name') }</p>
+      <p class="address__details">{ t('address.street1') }</p>
+      <p class="address__details">{ t('address.street2') }</p>
+    </address>
+    <address class="footer__address">
+      <p class="address__heading">{ t('address.contact') }</p>
+      <dl class="address__list">
+        <dt class="address__term" aria-label={ t('address.phone.label') }>{ t('address.phone.term') }</dt>
+        <dd class="address__description">
+          <a class="address__link" href="tel:+12538638967">+1 253-863-8967</a>
+        </dd>
+        <dt class="address__term" aria-label={ t('address.email.label') }>{ t('address.email.term') }</dt>
+        <dd class="address__description">
+          <a class="address__link" href="mailto:contact@designo.co">contact@designo.co</a>
+        </dd>
+      </dl>
+    </address>
+    <ul class="footer__sns">
+      <li class="sns__item">
+        <a class="sns__link" href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+          <span data-visually-hidden="all">{ t('social.facebook') }</span>
+          <svg viewBox="0 0 50 50" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="m 25,0.021764 c -13.320338,0 -24.11912943,11.241841 -24.11912943,25.108681 0,12.588579 8.90763303,22.982431 20.51441543,24.798245 V 31.785386 h -5.967292 v -6.600159 h 5.967292 V 20.79349 c 0,-7.271245 3.40299,-10.463471 9.208027,-10.463471 2.780276,0 4.250448,0.214565 4.946613,0.312717 v 5.7613 h -3.959922 c -2.464536,0 -3.325151,2.432119 -3.325151,5.17353 v 3.607661 h 7.222583 l -0.980114,6.600159 H 28.264853 V 49.982331 C 40.03718,48.319453 49.11913,37.841143 49.11913,25.130445 49.11913,11.263605 38.320338,0.021764 25,0.021764 Z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="sns__link" href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+          <span data-visually-hidden="all">{ t('social.youtube') }</span>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.441 16.892c-2.102.144-6.784.144-8.883 0C5.282 16.736 5.017 15.622 5 12c.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0C18.718 7.264 18.982 8.378 19 12c-.018 3.629-.285 4.736-2.559 4.892zM10 9.658l4.917 2.338L10 14.342V9.658z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="sns__link" href="https://twitter.com/" target="_blank" rel="noreferrer">
+          <span data-visually-hidden="all">{ t('social.twitter') }</span>
+          <svg viewBox="0 0 1200 1227" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="sns__link" href="https://www.pinterest.com/" target="_blank" rel="noreferrer">
+          <span data-visually-hidden="all">{ t('social.pinterest') }</span>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="sns__link" href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+          <span data-visually-hidden="all">{ t('social.instagram') }</span>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

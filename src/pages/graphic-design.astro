@@ -1,0 +1,53 @@
+---
+import Hero from '../components/Hero.astro'
+import Project from '../components/Project.astro'
+import Service from '../components/Service.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import serviceDict from '../locales/service.yml'
+import graphicDesignDict from '../locales/graphic-design.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/graphic-design/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tService = useTranslations(lang, serviceDict)
+const tGraphicDesign = useTranslations(lang, graphicDesignDict)
+---
+
+<Layout title={ `${tGraphicDesign('title')} | ${tIndex('title.brand')}` }>
+  <Hero type="graphic-design">
+    <Fragment slot="heading">{ tGraphicDesign('hero.heading') }</Fragment>
+    <Fragment slot="content">{ tGraphicDesign('hero.content') }</Fragment>
+  </Hero>
+  <ul class="project__list | container">
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/graphic-design/desktop/image-change.jpg" ariaLabel={ tGraphicDesign('project.tim-brown.ariaLabel') }>
+        <Fragment slot="title">{ tGraphicDesign('project.tim-brown.title') }</Fragment>
+        <Fragment slot="content">{ tGraphicDesign('project.tim-brown.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/graphic-design/desktop/image-boxed-water.jpg" ariaLabel={ tGraphicDesign('project.boxed-water.ariaLabel') }>
+        <Fragment slot="title">{ tGraphicDesign('project.boxed-water.title') }</Fragment>
+        <Fragment slot="content">{ tGraphicDesign('project.boxed-water.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/graphic-design/desktop/image-science.jpg" ariaLabel={ tGraphicDesign('project.science.ariaLabel') }>
+        <Fragment slot="title">{ tGraphicDesign('project.science.title') }</Fragment>
+        <Fragment slot="content">{ tGraphicDesign('project.science.content') }</Fragment>
+      </Project>
+    </li>
+  </ul>
+  <div class="service__list | container">
+    <Service type="app-design" link="app-design" ariaLabel={ tService('label.app-design') }>
+      <Fragment slot="title">{ tService('type.app-design') }</Fragment>
+    </Service>
+    <Service type="web-design" link="web-design" ariaLabel={ tService('label.web-design') }>
+      <Fragment slot="title">{ tService('type.web-design') }</Fragment>
+    </Service>
+  </div>
+</Layout>

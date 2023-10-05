@@ -1,0 +1,55 @@
+en:
+  title: Contact Us
+
+  hero.heading: Contact Us
+  hero.content: Ready to take it to the next level? Let's talk about your project or idea and find out how we can help your business grow. If you are looking for unique digital experiences that's relatable to your users, drop us a line.
+
+  form.name.label: Name
+  form.name.placeholder: Name
+
+  form.email.label: Email Address
+  form.email.placeholder : Email Address
+
+  form.phone.name: Telephone Number
+  form.phone.placeholder: Phone
+
+  form.message.label: Your Message
+  form.message.placeholder: Your Message
+
+  form.submit.label: Submit
+
+  form.close.label: Close
+
+  form.error.required: Can't be empty
+  form.error.email: Please use a valid email address
+  form.error.phone: Please use a valid phone number
+
+  form.message.submit: Thank you for taking the time to reach out to us! We'll get back to you as quickly as possible! Have a great day!
+      
+ja:
+  title: お問い合わせ
+
+  hero.heading: お問い合わせ
+  hero.content: 事業を次の段階に進めてみませんか。御社のプロジェクトやアイデアをお聞かせください。ユーザーに親しまれるユニークなデジタル体験をお探しでしたら、ぜひご連絡ください。
+
+  form.name.label: お名前
+  form.name.placeholder: お名前
+
+  form.email.label: メールアドレス
+  form.email.placeholder : メールアドレス
+
+  form.phone.label: 電話番号
+  form.phone.placeholder: 電話番号
+
+  form.message.label: メッセージ
+  form.message.placeholder: メッセージ
+
+  form.submit.label: 送信
+
+  form.close.label: 閉じる
+
+  form.error.required: この項目に入力してください
+  form.error.email: 有効なメールアドレスを入力してください
+  form.error.phone: 有効な電話番号を入力ください
+
+  form.message.submit: ご連絡を、ありがとうございます！速やかにお返事しますので、お待ちいただきますよう、よろしくお願いいたします。

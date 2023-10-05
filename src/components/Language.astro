@@ -1,0 +1,64 @@
+---
+import { getLocale, getLocaleUrl, locales } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import { languages } from '../i18n/ui'
+import dictionary from '../locales/language.yml'
+
+const lang = getLocale(Astro.url)
+const t = useTranslations(lang, dictionary)
+---
+
+<dialog class="language__dialog">
+  <div class="language__wrapper">
+    <button class="button language__close">
+      <span data-visually-hidden="all">{ t('close') }</span>
+    </button>
+  <h2 class="language__heading">{ t('heading') }</h2>
+  {Object.entries(languages).map(([localeCode, localeLabel]) => (
+    <a
+      class="button language__locale"
+      href={ getLocaleUrl(Astro.url, localeCode) }
+      data-state={ localeCode === lang && 'is-active' }
+    >{ localeLabel }</a>
+  ))}
+  </div>
+</dialog>
+
+<script>
+  function languageElements() {
+    const elements = {
+      dialog: document.querySelector('.language__dialog') as HTMLDialogElement,
+      openBtns: document.querySelectorAll('.navigation__language') as NodeListOf<HTMLButtonElement>,
+      closeBtn: document.querySelector('.language__close') as HTMLButtonElement,
+    }
+    return elements
+  }
+
+  function initializeDialog() {
+
+    const elements = languageElements()
+
+    elements.openBtns.forEach(openBtn => {
+      openBtn.addEventListener('click', () => {
+        elements.dialog.showModal()
+      })
+    })
+
+    elements.closeBtn.addEventListener('click', () => {
+      elements.dialog.dataset.state = 'is-deactivating'
+      elements.dialog.addEventListener('transitionend', () => {
+        if(elements.dialog.dataset.state && elements.dialog.dataset.state === 'is-deactivating') {
+          delete elements.dialog.dataset.state
+          elements.dialog.close()
+        }
+      }, { once: true })
+    })
+  }
+
+  initializeDialog()
+</script>
+
+
+
+<script>
+</script>

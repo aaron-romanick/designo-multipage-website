@@ -1,0 +1,20 @@
+@use '/src/styles/abstracts/mixins/media-queries' as media-queries;
+@use '/src/styles/abstracts/mixins/visually-hidden' as *;
+
+[data-visually-hidden="all"] {
+  @include visually-hidden;
+}
+
+[data-visually-hidden="mobile-only"] {
+  @include media-queries.size(mobile-only) {
+    @include visually-hidden;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}

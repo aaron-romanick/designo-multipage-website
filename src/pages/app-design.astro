@@ -1,0 +1,65 @@
+---
+import Hero from '../components/Hero.astro'
+import Project from '../components/Project.astro'
+import Service from '../components/Service.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import serviceDict from '../locales/service.yml'
+import appDesignDict from '../locales/app-design.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/app-design/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tService = useTranslations(lang, serviceDict)
+const tAppDesign = useTranslations(lang, appDesignDict)
+---
+
+<Layout title={ `${tAppDesign('title')} | ${tIndex('title.brand')}` }>
+  <Hero type="app-design">
+    <Fragment slot="heading">{ tAppDesign('hero.heading') }</Fragment>
+    <Fragment slot="content">{ tAppDesign('hero.content') }</Fragment>
+  </Hero>
+  <ul class="project__list | container">
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/app-design/desktop/image-airfilter.jpg" ariaLabel={ tAppDesign('project.airfilter.ariaLabel') }>
+        <Fragment slot="title">{ tAppDesign('project.airfilter.title') }</Fragment>
+        <Fragment slot="content">{ tAppDesign('project.airfilter.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/app-design/desktop/image-eyecam.jpg" ariaLabel={ tAppDesign('project.eyecam.ariaLabel') }>
+        <Fragment slot="title">{ tAppDesign('project.eyecam.title') }</Fragment>
+        <Fragment slot="content">{ tAppDesign('project.eyecam.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/app-design/desktop/image-faceit.jpg" ariaLabel={ tAppDesign('project.faceit.ariaLabel') }>
+        <Fragment slot="title">{ tAppDesign('project.faceit.title') }</Fragment>
+        <Fragment slot="content">{ tAppDesign('project.faceit.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/app-design/desktop/image-todo.jpg" ariaLabel={ tAppDesign('project.todo.ariaLabel') }>
+        <Fragment slot="title">{ tAppDesign('project.todo.title') }</Fragment>
+        <Fragment slot="content">{ tAppDesign('project.todo.content') }</Fragment>
+      </Project>
+    </li>
+    <li class="project__item">
+      <Project imagesGlob={ imagesGlob } imagePath="../assets/app-design/desktop/image-loopstudios.jpg" ariaLabel={ tAppDesign('project.loopstudios.ariaLabel') }>
+        <Fragment slot="title">{ tAppDesign('project.loopstudios.title') }</Fragment>
+        <Fragment slot="content">{ tAppDesign('project.loopstudios.content') }</Fragment>
+      </Project>
+    </li>
+  </ul>
+  <div class="service__list | container">
+    <Service type="web-design" link="web-design" ariaLabel={ tService('label.web-design') }>
+      <Fragment slot="title">{ tService('type.web-design') }</Fragment>
+    </Service>
+    <Service type="graphic-design" link="graphic-design" ariaLabel={ tService('label.graphic-design') }>
+      <Fragment slot="title">{ tService('type.graphic-design') }</Fragment>
+    </Service>
+  </div>
+</Layout>

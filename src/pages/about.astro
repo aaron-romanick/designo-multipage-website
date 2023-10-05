@@ -1,0 +1,57 @@
+---
+import Endorsement from '../components/Endorsement.astro'
+import Hero from '../components/Hero.astro'
+import Place from '../components/Place.astro'
+import Layout from '../layouts/WithCTA.astro'
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
+import { useTranslations } from '../i18n/utils'
+import indexDict from '../locales/index.yml'
+import aboutDict from '../locales/about.yml'
+import placeDict from '../locales/place.yml'
+
+const imagesGlob = import.meta.glob<ImageMetadata>('../assets/shared/desktop/*', { import: 'default' })
+
+const lang = getLocale(Astro.url)
+const tIndex = useTranslations(lang, indexDict)
+const tAbout = useTranslations(lang, aboutDict)
+const tPlace = useTranslations(lang, placeDict)
+---
+
+<Layout title={ `${tAbout('title')} | ${tIndex('title.brand')}` }>
+  <Hero type="about">
+    <Fragment slot="heading">{ tAbout('hero.heading') }</Fragment>
+    <Fragment slot="content">{ tAbout('hero.content') }</Fragment>
+  </Hero>
+  <Endorsement type="world-class-talent">
+    <Fragment slot="heading">{ tAbout('endorsement.world-class.heading') }</Fragment>
+    <Fragment slot="content">
+    {Array.from(tAbout('endorsement.world-class.content')).map(content => (
+      <p class="endorsement__content">
+        { content }
+      </p>
+    ))}
+    </Fragment>
+  </Endorsement>
+  <ul class="place__list | container">
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-canada.svg" link={ getLocaleUrl('/locations#canada', lang) } imageAlt={ tPlace('canada.imageAlt') }>
+      <Fragment slot="name">{ tPlace('canada.name') }</Fragment>
+    </Place>
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-australia.svg" link={ getLocaleUrl('/locations#australia', lang) } imageAlt={ tPlace('australia.imageAlt') }>
+      <Fragment slot="name">{ tPlace('australia.name') }</Fragment>
+    </Place>
+    <Place imagesGlob={ imagesGlob } imagePath="../assets/shared/desktop/illustration-united-kingdom.svg" link={ getLocaleUrl('/locations#united-kingdom', lang) } imageAlt={ tPlace('united-kingdom.imageAlt') }>
+      <Fragment slot="name">{ tPlace('united-kingdom.name') }</Fragment>
+    </Place>
+  </ul>
+  <Endorsement type="real-deal">
+    <Fragment slot="heading">{ tAbout('endorsement.real-deal.heading') }</Fragment>
+    <Fragment slot="content">
+
+      {Array.from(tAbout('endorsement.real-deal.content')).map(content => (
+        <p class="endorsement__content">
+          { content }
+        </p>
+      ))}
+    </Fragment>
+  </Endorsement>
+</Layout>
