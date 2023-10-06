@@ -9,13 +9,13 @@ const locales = {
   ja: 'ja-JP',
 }
 
-const site = import.meta.env.MODE === 'production' ? 'https:://projects.aaronromanick.com/designo' : 'http://localhost:4321'
-
 // https://astro.build/config
 export default defineConfig({
-  site,
+  site: process.env.NODE_ENV === 'production' ? 'https://projects.aaronromanick.com' : 'http://localhost:4321',
   trailingSlash: 'never',
+  base: process.env.NODE_ENV === 'production' ? '/designo-multipage-website' : undefined,
   build: {
+    assets: '_assets',
     format: 'file',
   },
   integrations: [
