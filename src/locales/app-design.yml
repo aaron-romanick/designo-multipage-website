@@ -30,8 +30,8 @@ ja:
   hero.heading: アプリデザイン
   hero.content: 弊社のモバイルデザインは、直感的なデジタルソリューションをお客様の指先にお届けします。
 
-  project.airfilter.ariaLabel: Airfilterは、空気をろ過することで、室内空気の質の低下という問題を解決しています。
-  project.airfilter.content: 空気をろ過することで、室内空気の質の低下という問題を解決しています
+  project.airfilter.ariaLabel: Airfilterは、空気をろ過して清浄することで、室内空気の質の低下という問題を解決しています。
+  project.airfilter.content: 空気をろ過して清浄することで、室内空気の質の低下という問題を解決しています
 
   project.eyecam.ariaLabel: Eyecamは、お気に入りの写真やビデオをいつでも編集できる製品です。
   project.eyecam.content: お気に入りの写真やビデオをいつでも編集できる製品
@@ -39,8 +39,8 @@ ja:
   project.faceit.ariaLabel: Faceitは、お気に入りのインターネット・スーパースターに会えるアプリです。
   project.faceit.content: Faceitアプリでお気に入りのスーパースターに会いましょう
 
-  project.todo.ariaLabel: Todoは、ライトモードとダークモードを備えたクラウド同期機能を備えたよることのアプリです。
-  project.todo.content: ライトモードとダークモードを備えたクラウド同期機能を備えたよることのアプリ
+  project.todo.ariaLabel: Todoは、ライトモードとダークモードを備えたクラウド同期機能を備えたやることリストのアプリです。
+  project.todo.content: ライトモードとダークモードを備えたクラウド同期機能を備えたやることリストのアプリ
 
   project.loopstudios.ariaLabel: Loopstudiosは、VR体験アプリです。
   project.loopstudios.content: Loopstudiosのために作られたVR体験アプリ
