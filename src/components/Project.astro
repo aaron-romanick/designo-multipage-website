@@ -11,7 +11,7 @@ const { ariaLabel, imagesGlob, imagePath } = Astro.props
 const imageFromGlob = useImages(imagesGlob)
 ---
 
-<a href="#" class="project__link" aria-label={ ariaLabel }>
+<a class="project__link" aria-label={ ariaLabel }>
   <Image src={ imageFromGlob(imagePath) } class="project__image" alt="" />
   <div class="project__text | flow">
     <h2 class="project__title">
