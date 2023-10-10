@@ -24,13 +24,13 @@ const tQuality = useTranslations(lang, qualityDict)
     <Fragment slot="button">{ tIndex('hero.button') }</Fragment>
   </Hero>
   <div class="service__list | container">
-    <Service type="web-design" link="web-design" ariaLabel={ tService('label.web-design') }>
+    <Service type="web-design" link={ getLocaleUrl('/web-design', lang) } ariaLabel={ tService('label.web-design') }>
       <Fragment slot="title">{ tService('type.web-design') }</Fragment>
     </Service>
-    <Service type="app-design" link="app-design" ariaLabel={ tService('label.app-design') }>
+    <Service type="app-design" link={ getLocaleUrl('/app-design', lang) } ariaLabel={ tService('label.app-design') }>
       <Fragment slot="title">{ tService('type.app-design') }</Fragment>
     </Service>
-    <Service type="graphic-design" link="graphic-design" ariaLabel={ tService('label.graphic-design') }>
+    <Service type="graphic-design" link={ getLocaleUrl('/graphic-design', lang) } ariaLabel={ tService('label.graphic-design') }>
       <Fragment slot="title">{ tService('type.graphic-design') }</Fragment>
     </Service>
   </div>

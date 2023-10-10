@@ -3,7 +3,7 @@ import Hero from '../components/Hero.astro'
 import Project from '../components/Project.astro';
 import Service from '../components/Service.astro'
 import Layout from '../layouts/WithCTA.astro'
-import { getLocale } from 'astro-i18n-aut'
+import { getLocale, getLocaleUrl } from 'astro-i18n-aut'
 import { useTranslations } from '../i18n/utils'
 import indexDict from '../locales/index.yml'
 import serviceDict from '../locales/service.yml'
@@ -61,10 +61,10 @@ const tWebDesign = useTranslations(lang, webDesignDict)
     </li>
   </ul>
   <div class="service__list | container">
-    <Service type="app-design" link="app-design" ariaLabel={ tService('label.app-design') }>
+    <Service type="app-design" link={ getLocaleUrl('/app-design', lang) } ariaLabel={ tService('label.app-design') }>
       <Fragment slot="title">{ tService('type.app-design') }</Fragment>
     </Service>
-    <Service type="graphic-design" link="graphic-design" ariaLabel={ tService('label.graphic-design') }>
+    <Service type="graphic-design" link={ getLocaleUrl('/graphic-design', lang) } ariaLabel={ tService('label.graphic-design') }>
       <Fragment slot="title">{ tService('type.graphic-design') }</Fragment>
     </Service>
   </div>
