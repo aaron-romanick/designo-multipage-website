@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import { i18n, filterSitemapByDefaultLocale } from 'astro-i18n-aut/integration'
+import purgecss from 'astro-purgecss'
 import sitemap from '@astrojs/sitemap'
 import yaml from '@rollup/plugin-yaml'
 
@@ -29,6 +30,11 @@ export default defineConfig({
         defaultLocale,
       },
       filter: filterSitemapByDefaultLocale({ defaultLocale }),
+    }),
+    // https://github.com/codiume/orbit/tree/main/packages/astro-purgecss
+    // https://purgecss.com/configuration.html
+    purgecss({
+      variables: true,
     }),
   ],
   vite: {
