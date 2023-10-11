@@ -62,44 +62,56 @@ const tPlace = useTranslations(lang, placeDict)
 import 'toastify-js/src/toastify.css'
 import Toastify from 'toastify-js'
 
+// Check if a form input is empty
 function isEmpty(formInput: HTMLFormElement) {
   return formInput.value === ""
 }
 
+// Check if a form input has a specific validation type
 function hasValidationType(formInput: HTMLFormElement, validationType: string) {
   return !!formInput.dataset[`error${ validationType.charAt(0).toUpperCase() + validationType.slice(1) }`]
 }
 
+// Validate if the input is a valid email
 function isValidEmail(formInput: HTMLFormElement) {
+  // Regular expression for validating an email
   const emailRegex = /^([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@([0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)*|\[((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|IPv6:((((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){6}|::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){5}|[0-9A-Fa-f]{0,4}::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){4}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):)?(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){3}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,2}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){2}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,3}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,4}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,5}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,6}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)|(?!IPv6:)[0-9A-Za-z-]*[0-9A-Za-z]:[!-Z^-~]+)])$/
 
   return emailRegex.test(formInput.value)
 }
 
+// Validate if the input is a valid phone number
 function isValidPhone(formInput: HTMLFormElement) {
+  // Regular expression for validating a phone number
   const phoneRegex = /^[0-9+().,;/*# -]*$/
 
-return phoneRegex.test(formInput.value)
+  return phoneRegex.test(formInput.value)
 }
 
+// Check if any form inputs have errors
 function hasAnyErrors() {
   const formInputs: NodeListOf<HTMLInputElement | HTMLTextAreaElement> = document.querySelectorAll('.contact__form input, .contact__form textarea')
   const formButton: HTMLButtonElement = document.querySelector('.contact__form .contact__button') as HTMLButtonElement
   const hasErrors = Array.from(formInputs).some(input => {
+    // Check for various error conditions based on dataset attributes
     return !!input.dataset.hasError ||
     (!input.dataset.isTouched && input.dataset.errorRequired) ||
     input.dataset.isTouched === 'false'
   })
-  formButton.disabled = hasErrors
+  formButton.disabled = hasErrors // Disable the form button if there are errors
   return hasErrors
 }
 
+// Validate a form input on blur or input event
 function validate(evt: Event) {
   const formInputTarget = evt.target as HTMLFormElement
   const errorMessageElement = formInputTarget.nextElementSibling?.querySelector('.error__message')
+
+  // Mark the input as touched
   if(!formInputTarget.dataset.isTouched) {
     formInputTarget.dataset.isTouched = "true"
   }
+  
   if(errorMessageElement) {
     if(isEmpty(formInputTarget) && hasValidationType(formInputTarget, 'required') && formInputTarget.dataset.errorRequired) {
       formInputTarget.dataset.hasError = 'true'
@@ -115,11 +127,12 @@ function validate(evt: Event) {
       errorMessageElement.textContent = ""
     }
   }
-  hasAnyErrors()
+  hasAnyErrors() // Check for form errors
 }
 
+// Initialize form validation
 function initializeFormValidation() {
-  resetForm()
+  resetForm() // Reset the form
   const formInputs = document.querySelectorAll('.contact__form input, .contact__form textarea')
   const eventsToHandle = [
     'blur',
@@ -127,11 +140,12 @@ function initializeFormValidation() {
   ]
   formInputs.forEach(formInput => {
     eventsToHandle.forEach(eventToHandle => {
-      formInput.addEventListener(eventToHandle, validate)
+      formInput.addEventListener(eventToHandle, validate) // Add event listeners for input validation
     })
   })
 }
 
+// Create a toast element with a custom message
 function ToastNode() {
   const form = document.querySelector('.contact__form') as HTMLFormElement
   const div = document.createElement('div')
@@ -145,10 +159,12 @@ function ToastNode() {
   return div
 }
 
+// Handle form submission
 function handleSubmit(evt: MouseEvent) {
   evt.preventDefault()
-  resetForm()
+  resetForm() // Reset the form
 
+  // Create and show a toast notification
   const toast = Toastify({
     className: 'toast',
     duration: 5000,
@@ -162,17 +178,19 @@ function handleSubmit(evt: MouseEvent) {
   }).showToast()
 }
 
+// Reset the form and check for errors
 function resetForm() {
   const form = document.querySelector('.contact__form') as HTMLFormElement
   form.reset()
   hasAnyErrors()
 }
 
+// Initialize the form
 function initializeForm() {
   const formButton = document.querySelector('.contact__form .contact__button') as HTMLButtonElement
-  formButton.addEventListener('click', handleSubmit)
-  initializeFormValidation()
+  formButton.addEventListener('click', handleSubmit) // Add event listener for form submission
+  initializeFormValidation() // Initialize form validation
 }
 
-initializeForm()
+initializeForm() // Initialize the form
 </script>

@@ -49,33 +49,42 @@ const t = useTranslations(lang, dictionary)
 
 <script>
   import { map, latLng, tileLayer, marker } from 'leaflet'
+
+  // URL template for OpenStreetMap tiles
   const urlTemplate = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
+  // Map options to disable zoom control
   const mapOptions = {
     zoomControl: false,
   }
 
+  // Latitude and longitude coordinates for specific locations
   const canadaLatLng = latLng(43.657596, -79.461414)
   const australiaLatLng = latLng(-30.329194, 149.788186)
   const unitedKingdomLatLng = latLng(51.732456, -3.862007)
 
+  // Create maps for Canada, Australia, and the United Kingdom, set initial view and zoom level
   const canada = map('canada', mapOptions).setView(canadaLatLng, 14)
   const australia = map('australia', mapOptions).setView(australiaLatLng, 14)
   const unitedKingdom = map('united-kingdom', mapOptions).setView(unitedKingdomLatLng, 14)
   
+  // Tile layer options for OpenStreetMap tiles
   const tileLayerOptions = {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target=_blank"">OpenStreetMap</a>',
     detectRetina: true,
   }
 
+  // Add the tile layer to each map for the respective country
   tileLayer(urlTemplate, tileLayerOptions).addTo(canada)
   tileLayer(urlTemplate, tileLayerOptions).addTo(australia)
   tileLayer(urlTemplate, tileLayerOptions).addTo(unitedKingdom)
 
+  // Create markers for each country using their latitude and longitude coordinates
   const canadaMarker = marker(canadaLatLng)
   const australiaMarker = marker(australiaLatLng)
   const unitedKingdomMarker = marker(unitedKingdomLatLng)
 
+  // Add the markers to the respective maps
   canadaMarker.addTo(canada)
   australiaMarker.addTo(australia)
   unitedKingdomMarker.addTo(unitedKingdom)

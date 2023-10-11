@@ -25,36 +25,45 @@ const t = useTranslations(lang, dictionary)
 </dialog>
 
 <script>
+  // Gather language-related DOM elements
   function languageElements() {
+    // Define an object containing references to various DOM elements related to language
     const elements = {
-      dialog: document.querySelector('.language__dialog') as HTMLDialogElement,
-      openBtns: document.querySelectorAll('.navigation__language') as NodeListOf<HTMLButtonElement>,
-      closeBtn: document.querySelector('.language__close') as HTMLButtonElement,
+      dialog: document.querySelector('.language__dialog') as HTMLDialogElement, // Reference to a dialog element
+      openBtns: document.querySelectorAll('.navigation__language') as NodeListOf<HTMLButtonElement>, // Reference to language open buttons
+      closeBtn: document.querySelector('.language__close') as HTMLButtonElement, // Reference to the language close button
     }
-    return elements
+    return elements // Return the object with references to DOM elements
   }
 
+  // Function to initialize the language dialog
   function initializeDialog() {
+    const elements = languageElements() // Get language-related DOM elements
 
-    const elements = languageElements()
-
+    // Add event listener to each language open button to show the dialog when clicked
     elements.openBtns.forEach(openBtn => {
       openBtn.addEventListener('click', () => {
         elements.dialog.showModal()
       })
     })
 
+    // Add event listener to the language close button to handle dialog closing
     elements.closeBtn.addEventListener('click', () => {
+      // Update the dialog's dataset state for deactivation animation
       elements.dialog.dataset.state = 'is-deactivating'
+
+      // Add event listener for transition end to handle closing the dialog after the deactivation animation
       elements.dialog.addEventListener('transitionend', () => {
+        // Check if the dataset state is 'is-deactivating' and close the dialog
         if(elements.dialog.dataset.state && elements.dialog.dataset.state === 'is-deactivating') {
-          delete elements.dialog.dataset.state
-          elements.dialog.close()
+          delete elements.dialog.dataset.state // Remove the dataset state
+          elements.dialog.close() // Close the dialog
         }
-      }, { once: true })
+      }, { once: true }) // Remove the event listener after it's triggered once
     })
   }
 
+  // Call the function to initialize the language dialog
   initializeDialog()
 </script>
 
