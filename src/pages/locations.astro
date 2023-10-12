@@ -5,41 +5,43 @@ import Location from '../components/Location.astro'
 import Layout from '../layouts/WithCTA.astro'
 import { getLocale } from 'astro-i18n-aut'
 import { useTranslations } from '../i18n/utils'
-import dictionary from '../locales/locations.yml'
+import locationsDict from '../locales/locations.yml'
+import indexDict from '../locales/index.yml'
 
 const lang = getLocale(Astro.url)
-const t = useTranslations(lang, dictionary)
+const tIndex = useTranslations(lang, indexDict)
+const tLocations = useTranslations(lang, locationsDict)
 ---
 
-<Layout title="Locations | Designo">
-  <h1 data-visually-hidden="all">Locations</h1>
+<Layout title={ `${tLocations('title')} | ${tIndex('title.brand')}` }>
+  <h1 data-visually-hidden="all">{ tLocations('title') }</h1>
   <ul class="location__list | container flow">
     <li class="location__item">
       <Location mapId="canada">
-        <Fragment slot="heading">{ t('canada.heading') }</Fragment>
-        <Fragment slot="name">{ t('canada.address.name') }</Fragment>
-        <Fragment slot="address1">{ t('canada.address.street1') }</Fragment>
-        <Fragment slot="address2">{ t('canada.address.street2') }</Fragment>
+        <Fragment slot="heading">{ tLocations('canada.heading') }</Fragment>
+        <Fragment slot="name">{ tLocations('canada.address.name') }</Fragment>
+        <Fragment slot="address1">{ tLocations('canada.address.street1') }</Fragment>
+        <Fragment slot="address2">{ tLocations('canada.address.street2') }</Fragment>
         <Fragment slot="phone">+1 253-863-8967</Fragment>
         <Fragment slot="email">contact@designo.co</Fragment>
       </Location>
     </li>
     <li class="location__item">
       <Location mapId="australia">
-        <Fragment slot="heading">{ t('australia.heading') }</Fragment>
-        <Fragment slot="name">{ t('australia.address.name') }</Fragment>
-        <Fragment slot="address1">{ t('australia.address.street1') }</Fragment>
-        <Fragment slot="address2">{ t('australia.address.street2') }</Fragment>
+        <Fragment slot="heading">{ tLocations('australia.heading') }</Fragment>
+        <Fragment slot="name">{ tLocations('australia.address.name') }</Fragment>
+        <Fragment slot="address1">{ tLocations('australia.address.street1') }</Fragment>
+        <Fragment slot="address2">{ tLocations('australia.address.street2') }</Fragment>
         <Fragment slot="phone">(02) 6720 9092</Fragment>
         <Fragment slot="email">contact@designo.au</Fragment>
       </Location>
     </li>
     <li class="location__item">
       <Location mapId="united-kingdom">
-        <Fragment slot="heading">{ t('united-kingdom.heading') }</Fragment>
-        <Fragment slot="name">{ t('united-kingdom.address.name') }</Fragment>
-        <Fragment slot="address1">{ t('united-kingdom.address.street1') }</Fragment>
-        <Fragment slot="address2">{ t('united-kingdom.address.street2') }</Fragment>
+        <Fragment slot="heading">{ tLocations('united-kingdom.heading') }</Fragment>
+        <Fragment slot="name">{ tLocations('united-kingdom.address.name') }</Fragment>
+        <Fragment slot="address1">{ tLocations('united-kingdom.address.street1') }</Fragment>
+        <Fragment slot="address2">{ tLocations('united-kingdom.address.street2') }</Fragment>
         <Fragment slot="phone">078 3115 1400</Fragment>
         <Fragment slot="email">contact@designo.uk</Fragment>
       </Location>

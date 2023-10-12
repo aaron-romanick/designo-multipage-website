@@ -1,5 +1,5 @@
 en:
-  title: Contact Us
+  title: Locations
 
   term.contact: Contact
   phone.term: P
@@ -23,7 +23,7 @@ en:
   united-kingdom.address.street2: Rhyd-y-fro SA8 9GA
       
 ja:
-  title: お問い合わせ
+  title: 支店
 
   term.contact: 連絡先
   phone.term: TEL
